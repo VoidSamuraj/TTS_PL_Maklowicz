@@ -6,6 +6,17 @@ This project is strictly for non-commercial, educational, and research purposes 
 
 Despite a **large total dataset (~39h 23m 45s)**, the **linguistic diversity is limited** due to the thematic nature of the content (culinary travel, geography, and anecdotes). As a result, some words and phonetic combinations may be underrepresented in the training data.
 
+<table>
+  <tr>
+    <td>
+      <video controls  src="https://github.com/user-attachments/assets/f3b66048-eb14-4080-acfd-b60f92378ead"></video>
+    </td>
+    <td>
+      <video controls src="https://github.com/user-attachments/assets/0ab0954a-9919-4d05-8ba1-b3294e0e7b42"></video>
+    </td>
+  </tr>
+</table>
+
 ---
 
 ## 🎯 Motivation
