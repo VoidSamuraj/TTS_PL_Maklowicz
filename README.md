@@ -33,8 +33,8 @@ This is my **first attempt at fine-tuning a TTS model**, and I wanted to experim
 ## 🏗️ Project Structure
 - `urls.txt` – List of YouTube links, one link per line.
 - `download.py` – Downloads YouTube videos and subtitles.
-- `trim_audio_adn_update_sub.py` – Trims silence and aligns text with audio. *(optional – functionality might overlap with later steps)*
-- `cleand_weird_digits.py` – Normalizes path names (prevents errors caused by strange directory/file names).
+- `trim_audio_and_update_sub.py` – Trims silence and aligns text with audio. *(optional – functionality might overlap with later steps)*
+- `clean_weird_digits.py` – Normalizes path names (prevents errors caused by strange directory/file names).
 - `remove_noise.py` – *(optional)* Removes background noise.
 - `copy_audio_and_subs_to_same_folder.py` – Organizes files for processing.
 - `remove_empty_folders.py` – *(optional)* Cleans up orphaned folders.
@@ -74,7 +74,7 @@ python trim_audio_adn_update_sub.py
 Fixes weird digits and characters in paths to avoid downstream errors.
 
 ```bash
-python cleand_weird_digits.py
+python clean_weird_digits.py
 ```
 
 ---
