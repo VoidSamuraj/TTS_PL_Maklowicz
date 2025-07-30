@@ -55,7 +55,7 @@ Follow these steps to prepare and train the model:
 Start by fetching YouTube videos and manually-created subtitles.
 
 ```bash
-python downloadnew.py
+python download.py
 ```
 
 ---
