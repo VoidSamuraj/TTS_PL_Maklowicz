@@ -106,7 +106,7 @@ python remove_empty_folders.py
 Shorter clips are more suitable for training and augmentation.
 
 ```bash
-python cut_files_new.py
+python cut_files.py
 ```
 
 ---
