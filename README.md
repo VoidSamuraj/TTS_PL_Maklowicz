@@ -28,6 +28,73 @@ This is my **first attempt at fine-tuning a TTS model**, and I wanted to experim
 - Speaker embeddings extracted using [`microsoft/speech-t5-tts`](https://huggingface.co/microsoft/speecht5_vc)
 - ✅ Final fine-tuned model: [`VoidSamuraj/TTS_PL_Maklowicz`](https://huggingface.co/VoidSamuraj/TTS_PL_Maklowicz)
 
+--- 
+
+## ⚙️ Requirements
+
+### 🐍 Python
+**Python 3.10.11** is required. Other versions are not guaranteed to work due to strict dependency compatibility (especially `speechbrain` and `torch`).
+
+> Download: https://www.python.org/downloads/release/python-31011/
+
+---
+
+### 🎙️ Running the App (`app.py`)
+
+| Package | Version |
+|---|---|
+| `torch` | 2.2.2+cpu *(or CUDA build)* |
+| `torchaudio` | 2.2.2+cpu *(must match torch)* |
+| `transformers` | 4.37.2 |
+| `speechbrain` | 0.5.16 |
+| `noisereduce` | 3.0.3 |
+| `matplotlib` | 3.10.8 |
+| `sounddevice` | 0.5.5 |
+| `soundfile` | 0.13.1 |
+| `numpy` | 1.26.4 |
+
+```bash
+pip install torch==2.2.2 torchaudio==2.2.2 --index-url https://download.pytorch.org/whl/cpu
+pip install transformers==4.37.2 speechbrain==0.5.16 noisereduce==3.0.3 matplotlib==3.10.8 sounddevice==0.5.5 soundfile==0.13.1 numpy==1.26.4
+```
+
+> For GPU support replace `cpu` with `cu118` or `cu121` in the PyTorch index URL.
+
+---
+
+### 🏋️ Dataset Preparation & Training
+
+In addition to the packages above:
+
+| Package | Used in |
+|---|---|
+| `datasets` | `SpeechT5_TTS_Fine_tuning.ipynb` |
+| `pandas` | `generate_csv_file.py` |
+| `yt-dlp` | `download.py` |
+| `srt` | `trim_audio_and_update_sub.py` |
+| `pysrt` | `cut_files.py` |
+| `tqdm` | multiple scripts |
+
+```bash
+pip install datasets pandas yt-dlp srt pysrt tqdm
+```
+
+> Jupyter and IPython (used in notebooks for inline audio playback) can be installed with: `pip install jupyter`
+
+---
+
+### 🪟 Windows – Additional Requirement
+
+**Microsoft Visual C++ Redistributable (x64)** is required by PyTorch on Windows.
+
+> Download: https://aka.ms/vs/17/release/vc_redist.x64.exe
+
+### 🔗 Symlinks (Windows only)
+
+`speechbrain` requires symlink creation. On Windows, either:
+- Enable **Developer Mode**: *Settings → System → For developers → Developer Mode → ON*
+- Or run the app **as Administrator**
+
 ---
 
 ## 🏗️ Project Structure
@@ -162,6 +229,50 @@ This notebook lets you:
 - Play or export the resulting audio
 - Generate learning(loss) chart
 - Filter audio
+
+---
+
+Or use
+### 🖥️ TTS Studio App
+
+`app.py` is a desktop GUI application for generating speech using any SpeechT5-based model — including your own fine-tuned checkpoint or any model from HuggingFace.
+
+<img width="1920" height="998" alt="Image" src="https://github.com/user-attachments/assets/4392082c-239b-461b-a2d1-07b9dfa550da" />
+
+### ✨ Features
+
+- 🎛️ **Multiple model support** — switch between your local fine-tuned model or any preset HuggingFace model from a dropdown
+- 🎤 **Voice cloning** — provide a reference `.wav` file to extract a speaker embedding and clone the voice
+- 🔇 **Noise reduction** — optional spectral noise gate applied to generated audio
+- 📊 **Waveform preview** — live waveform plot of the generated audio
+- 💾 **Export** — save generated audio as `.wav`
+- ⚙️ **Adjustable parameters** — chunk size, pause between chunks, fade in/out, max audio length
+
+### 🚀 How to run
+
+```bash
+python app.py
+```
+
+### 📋 Available models (preset dropdown)
+
+| Label | HuggingFace ID |
+|---|---|
+| Your fine-tuned model | *(local path)* |
+| d190305/speecht5_finetuned_pl_inteligentne_full | Polish ⭐ |
+| d190305/speecht5_finetuned_voxpopuli_pl_full_dataset | Polish |
+| Sagicc/speecht5_finetuned_multilingual_librispeech_pl | Polish (base) |
+| microsoft/speecht5_tts | English (base) |
+
+You can also point the app to **any local checkpoint folder** by selecting *"Your fine-tuned model"* and providing the paths manually.
+
+### ⚠️ Tips & Limitations
+
+> **Keep phrases short.** SpeechT5 is prone to hallucinations on long inputs — it may skip words, repeat syllables, or produce garbled output. Aim for **sentences under ~60 characters**. The app automatically splits text into chunks (configurable via *Chunk size* parameter).
+
+- Shorter, natural sentences produce the most stable results
+- The model outputs audio at a fixed **16 kHz** sample rate
+- First generation after launch takes longer — models are loaded lazily on first use
 
 ### 🎧 Example generated audio samples
 
